@@ -99,12 +99,23 @@ static class Hotel
         }
         return reservation;
     }
+
+    public static void CheckIn(string clientName)
+    {
+
+    }
+
+    public static void CheckOut(string clientName)
+    {
+
+    }
 }
 
 class Reservation
 {
     public int ReservationId { get; set; }
-    public DateTime Date { get; set; }
+    public DateTime created { get; set; }
+    public DateTime startDate { get; set; }
     public int Occupants { get; set; }
     public bool IsCurrent { get; set; }
     public Client Client { get; set; }
@@ -112,10 +123,11 @@ class Reservation
 
 
     // CONSTRUCTORS
-    public Reservation() { }
+    public Reservation()
+    { }
     public Reservation(int occupants, Client client, Room room)
     {
-        Date = DateTime.Now;
+        startDate = DateTime.Now;
         Occupants = occupants;
         IsCurrent = true;
         Client = client;
