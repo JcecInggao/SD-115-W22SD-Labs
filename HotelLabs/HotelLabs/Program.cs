@@ -1,23 +1,25 @@
-﻿// I DO NOT KNOW WHAT I AM DOING PLEASE HELP
+﻿// I DO NOT KNOW WHAT I AM DOING
 // Sorry Zach :(
 
-Hotel.RegisterClient("Garfield");
-LoyaltyProgramClient DoubleGarfield = Hotel.RegisterClient("Garfield", 200);
+Client Mark = new Client("Mark");
+Client John = new Client("John");
+Client Harry = new Client("Harry");
+Hotel.Clients.Add(Mark);
+Hotel.Clients.Add(John);
+Hotel.Clients.Add(Harry);
 
-Client Heathcliffe = new LoyaltyProgramClient(200, "Heathcliffe");
-Client Odie = new Client("Odie");
+Console.WriteLine(Hotel.GetClient(1));
+Console.WriteLine(Hotel.GetVacantRooms());
 
-Console.WriteLine(Odie.SayHello());
-Console.WriteLine(Heathcliffe.SayHello());
+Room room101 = new Room("101", 2);
+Room room102 = new Room("102", 2);
+Room room103 = new Room("103", 2);
+Hotel.Rooms.Add(room101);
+Hotel.Rooms.Add(room102);
+Hotel.Rooms.Add(room103);
 
-Room room101 = new Room(101);
-Room room102 = new Room(102);
-Room room103 = new Room(103);
-Room suite105 = new Suite(105, 3);
 
-Hotel.Rooms.Add(suite105);
 
-Hotel.ShowSuites();
 static class Hotel
 {
     public static HashSet<Client> Clients { get; set; } = new HashSet<Client>();
@@ -30,83 +32,143 @@ static class Hotel
         return newClient;
     }
 
-    public static LoyaltyProgramClient RegisterClient(string name, int points)
+    // Lab 1 Methods
+    public static Client GetClient(int clientID)
     {
-        return new LoyaltyProgramClient(points, name);
+        Client client;
+        client = Clients.First(id => id.ClientID == clientID);
+        return client;
     }
 
-    public static void ShowSuites()
+    public static Reservation GetReservation(int ID)
     {
+        Reservation reservation;
+        reservation = Reservations.First(id => id.ReservationId == ID);
+        return reservation;
+
+    }
+
+    public static Room GetRoom(string roomNumber)
+    {
+        Room room;
+        room = Rooms.First(number => number.Number == roomNumber);
+        return room;
+
+    }
+
+    public static List<Room> GetVacantRooms()
+    {
+        List<Room> rooms = new List<Room>();
         foreach (Room r in Rooms)
         {
-            if (r.GetType().FullName == "Suite")
+            if (!r.Occupied)
             {
-                Console.WriteLine($"{r.Number} is a suite");
+                rooms.Add(r);
             }
         }
+        return rooms;
+
+    }
+
+    public static List<Client> TopThreeClients()
+    {
+        List<Client> clients = new List<Client>();
+        foreach (Client c in Clients)
+        {
+            int initalCount = 0;
+            int reserveCounter = c.Reservations.Count;
+            if (reserveCounter > initalCount)
+            {
+                clients.Add(c);
+            }
+        }
+
+        return clients;
+
+    }
+
+    public static Reservation AutomaticReservation(int clientID, int occupants)
+    {
+        Reservation reservation = new Reservation();
+        foreach (Room r in Rooms)
+        {
+            if (r.Capacity >= occupants && r.Occupied == false)
+            {
+                return reservation;
+            }
+        }
+        return reservation;
     }
 }
 
 class Reservation
 {
-    public bool IsCurrent { get; set; } = true;
+    public int ReservationId { get; set; }
+    public DateTime Date { get; set; }
+    public int Occupants { get; set; }
+    public bool IsCurrent { get; set; }
     public Client Client { get; set; }
     public Room Room { get; set; }
-    public Reservation(Client Client, Room room)
+
+
+    // CONSTRUCTORS
+    public Reservation() { }
+    public Reservation(int occupants, Client client, Room room)
     {
-        Client = Client;
+        Date = DateTime.Now;
+        Occupants = occupants;
+        IsCurrent = true;
+        Client = client;
         Room = room;
     }
 }
 
 class Client
 {
+    public int ClientID { get; set; } = 1;
     public string Name { get; set; }
-    public HashSet<Reservation> Reservations { get; set; }
+    public int CreditCard { get; set; }
+    public List<Reservation> Reservations { get; set; }
 
-    public virtual string SayHello()
+    public Client()
     {
-        return $"Hello, my name is {Name}";
+        ClientID = ClientID++;
+        Reservations = new List<Reservation>();
     }
+
     public Client(string name)
     {
         Name = name;
-        Reservations = new HashSet<Reservation>();
+        ClientID = ClientID++;
+        Reservations = new List<Reservation>();
     }
-}
 
-class LoyaltyProgramClient : Client
-{
-    public override string SayHello()
+    public Client(string name, int creditCard)
     {
-        string message = base.SayHello();
-        message += ($". I have {Points} points");
-        return message;
-    }
-    public int Points { get; set; }
-    public LoyaltyProgramClient(int initialPoints, string name) : base(name)
-    {
-        Points = initialPoints;
+        Name = name;
+        ClientID = ClientID++;
+        CreditCard = creditCard;
+        Reservations = new List<Reservation>();
     }
 }
 
 class Room
 {
-    public int Number { get; set; }
-    public ICollection<Reservation> Reservations { get; set; }
+    public string Number { get; set; }
+    public int Capacity { get; set; }
+    public bool Occupied { get; set; }
+    public List<Reservation> Reservations { get; set; }
 
-    public Room(int number)
+    public Room()
+    {
+        Reservations = new List<Reservation>();
+    }
+
+    public Room(string number, int capacity)
     {
         Number = number;
-        Reservations = new HashSet<Reservation>();
-    }
-}
-
-class Suite : Room
-{
-    public int Size { get; set; }
-    public Suite(int number, int size) : base(number)
-    {
-        Size = size;
+        Capacity = capacity;
+        Occupied = false;
+        Reservations = new List<Reservation>();
     }
 }

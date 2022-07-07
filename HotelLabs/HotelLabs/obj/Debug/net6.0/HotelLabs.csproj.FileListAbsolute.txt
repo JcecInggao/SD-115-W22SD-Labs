@@ -1,0 +1,15 @@
+C:\Users\hogma\source\repos\SD-115-W22D\Labs\SD-115-W22SD-Labs\HotelLabs\HotelLabs\obj\Debug\net6.0\HotelLabs.csproj.AssemblyReference.cache
+C:\Users\hogma\source\repos\SD-115-W22D\Labs\SD-115-W22SD-Labs\HotelLabs\HotelLabs\obj\Debug\net6.0\HotelLabs.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hogma\source\repos\SD-115-W22D\Labs\SD-115-W22SD-Labs\HotelLabs\HotelLabs\obj\Debug\net6.0\HotelLabs.AssemblyInfoInputs.cache
+C:\Users\hogma\source\repos\SD-115-W22D\Labs\SD-115-W22SD-Labs\HotelLabs\HotelLabs\obj\Debug\net6.0\HotelLabs.AssemblyInfo.cs
+C:\Users\hogma\source\repos\SD-115-W22D\Labs\SD-115-W22SD-Labs\HotelLabs\HotelLabs\obj\Debug\net6.0\HotelLabs.csproj.CoreCompileInputs.cache
+C:\Users\hogma\source\repos\SD-115-W22D\Labs\SD-115-W22SD-Labs\HotelLabs\HotelLabs\bin\Debug\net6.0\HotelLabs.exe
+C:\Users\hogma\source\repos\SD-115-W22D\Labs\SD-115-W22SD-Labs\HotelLabs\HotelLabs\bin\Debug\net6.0\HotelLabs.deps.json
+C:\Users\hogma\source\repos\SD-115-W22D\Labs\SD-115-W22SD-Labs\HotelLabs\HotelLabs\bin\Debug\net6.0\HotelLabs.runtimeconfig.json
+C:\Users\hogma\source\repos\SD-115-W22D\Labs\SD-115-W22SD-Labs\HotelLabs\HotelLabs\bin\Debug\net6.0\HotelLabs.dll
+C:\Users\hogma\source\repos\SD-115-W22D\Labs\SD-115-W22SD-Labs\HotelLabs\HotelLabs\bin\Debug\net6.0\HotelLabs.pdb
+C:\Users\hogma\source\repos\SD-115-W22D\Labs\SD-115-W22SD-Labs\HotelLabs\HotelLabs\obj\Debug\net6.0\HotelLabs.dll
+C:\Users\hogma\source\repos\SD-115-W22D\Labs\SD-115-W22SD-Labs\HotelLabs\HotelLabs\obj\Debug\net6.0\refint\HotelLabs.dll
+C:\Users\hogma\source\repos\SD-115-W22D\Labs\SD-115-W22SD-Labs\HotelLabs\HotelLabs\obj\Debug\net6.0\HotelLabs.pdb
+C:\Users\hogma\source\repos\SD-115-W22D\Labs\SD-115-W22SD-Labs\HotelLabs\HotelLabs\obj\Debug\net6.0\HotelLabs.genruntimeconfig.cache
+C:\Users\hogma\source\repos\SD-115-W22D\Labs\SD-115-W22SD-Labs\HotelLabs\HotelLabs\obj\Debug\net6.0\ref\HotelLabs.dll
