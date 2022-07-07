@@ -40,6 +40,13 @@ static class Hotel
         return client;
     }
 
+    public static Client GetClient(string clientName)
+    {
+        Client client;
+        client = Clients.First(name => name.Name == clientName);
+        return client;
+    }
+
     public static Reservation GetReservation(int ID)
     {
         Reservation reservation;
@@ -100,14 +107,64 @@ static class Hotel
         return reservation;
     }
 
+    // Lab 2 Methods
     public static void CheckIn(string clientName)
     {
-
+        Client client = GetClient(clientName);
+        client.Reservations.Add(new Reservation());
     }
 
     public static void CheckOut(string clientName)
     {
+        Client client = new Client(clientName);
+        client.Reservations.Remove(new Reservation());
+    }
 
+    public static void CheckoutRoom(int RoomNumber)
+    {
+        string roomNumber = RoomNumber.ToString();
+        foreach (Room r in Rooms)
+        {
+            if (r.Number == roomNumber)
+            {
+                r.Occupied = false;
+            }
+        }
+    }
+
+    public static void CheckoutRoom(string clientName)
+    {
+        Client client = new Client(clientName);
+        client.Reservations.Clear();
+    }
+
+    public static int TotalCapacityRemaining()
+    {
+        int totalCapacity = 0;
+        foreach (Room r in Rooms)
+        {
+            foreach (Reservation res in Reservations)
+            {
+                totalCapacity += (r.Capacity - res.Occupants);
+            }
+        }
+        return totalCapacity;
+    }
+
+    public static int AverageOccupancyPercentage()
+    {
+        int averageCapacity = 0;
+        foreach (Room r in Rooms)
+        {
+            if (r.Occupied)
+            {
+                foreach (Reservation res in Reservations)
+                {
+                    averageCapacity = (res.Occupants / r.Capacity) * 100;
+                }
+            }
+        }
+        return averageCapacity;
     }
 }
 
@@ -124,7 +181,10 @@ class Reservation
 
     // CONSTRUCTORS
     public Reservation()
-    { }
+    {
+        startDate = DateTime.Now;
+        IsCurrent = true;
+    }
     public Reservation(int occupants, Client client, Room room)
     {
         startDate = DateTime.Now;
